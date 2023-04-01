@@ -213,7 +213,7 @@ body {
 .error {
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   width: 100vw;
   height: 100vh;
   background-color: #1c3048;
@@ -224,7 +224,7 @@ body {
 }
 .errorCard {
   width: 85%;
-  max-height: 30%;
+  min-height: 25%;
   max-width: 45rem;
   display: flex;
   flex-direction: column;
