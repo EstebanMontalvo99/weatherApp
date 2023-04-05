@@ -10,6 +10,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [err, setErr] = useState(false);
   const [searchErr, setsearchErr] = useState(false);
+  const [weatherbg, setWeatherbg] = useState();
+
   useEffect(() => {
     const success = (position) => {
       const obj = {
@@ -40,11 +42,14 @@ function App() {
       axios
         .get(url)
         .then((res) => {
+          setIsLoading(true);
           setWeather(res.data);
+          setWeatherbg(handlebg(weather));
           const obj = {
             celsius: (res.data.main.temp - 273).toFixed(2),
             farenheit: (((res.data.main.temp - 273) * 9) / 5 + 32).toFixed(2),
           };
+
           setTemp(obj);
         })
         .catch((err) => setsearchErr(true))
@@ -72,10 +77,7 @@ function App() {
     setnewCity(e.target.city.value.trim());
   };
   return (
-    <div
-      className="App"
-      style={{ backgroundImage: `url(${handlebg(weather)})` }}
-    >
+    <div className="App" style={{ backgroundImage: `url(${weatherbg})` }}>
       {err ? (
         <div className="error">
           <div className="errorCard">
